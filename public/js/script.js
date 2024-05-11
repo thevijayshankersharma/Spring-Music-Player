@@ -24,51 +24,32 @@ const p = async () => {
 
 p();
 
+// Function to toggle dark mode
 function toggleDarkMode() {
-  const body = document.querySelector('body');
-  const darkModeIcon = document.getElementById('darkModeIcon');
-  const lightModeIcon = document.getElementById('lightModeIcon');
+  const body = document.body;
+  body.classList.toggle("dark-mode");
 
-  if (body.classList.contains('dark-mode')) {
-    // If dark mode is active, switch to light mode
-    body.classList.remove('dark-mode');
-    localStorage.setItem('mode', 'light'); // Update local storage
-    darkModeIcon.style.display = 'inline-block';
-    lightModeIcon.style.display = 'none';
+  // Save the current mode to localStorage
+  const isDarkMode = body.classList.contains("dark-mode");
+  localStorage.setItem("darkMode", isDarkMode);
+}
+
+// Function to set initial mode
+function setInitialMode() {
+  const isDarkMode = localStorage.getItem("darkMode") === "true";
+  const body = document.body;
+
+  // Set the initial mode based on localStorage
+  if (isDarkMode) {
+    body.classList.add("dark-mode");
   } else {
-    // If light mode is active, switch to dark mode
-    body.classList.add('dark-mode');
-    localStorage.setItem('mode', 'dark'); // Update local storage
-    lightModeIcon.style.display = 'inline-block';
-    darkModeIcon.style.display = 'none';
+    body.classList.remove("dark-mode");
   }
 }
 
-// Check if dark mode preference is stored in local storage
-document.addEventListener('DOMContentLoaded', () => {
-  const mode = localStorage.getItem('mode');
-  if (mode === 'dark') {
-    toggleDarkMode(); // Switch to dark mode if stored preference is dark
-  }
-});
+// Call setInitialMode when the page loads
+window.onload = setInitialMode;
 
-const darkModeIcon = document.getElementById('darkModeIcon');
-const lightModeIcon = document.getElementById('lightModeIcon');
-const body = document.querySelector('body');
-
-darkModeIcon.addEventListener('click', () => {
-  darkModeIcon.style.display = 'none';
-  lightModeIcon.style.display = 'inline-block';
-  body.classList.add('dark-mode');
-  localStorage.setItem('mode', 'dark');
-});
-
-lightModeIcon.addEventListener('click', () => {
-  lightModeIcon.style.display = 'none';
-  darkModeIcon.style.display = 'inline-block';
-  body.classList.remove('dark-mode');
-  localStorage.setItem('mode', 'light');
-});
 
 function togglePlayPause() {
   if (audio.paused) {
@@ -141,42 +122,15 @@ function previousPlay() {
   authorElement.textContent = `${globalData[currplaying].artist} - ${globalData[currplaying].year}`;
 }
 
-
 audio.addEventListener("loadedmetadata", () => {
   const mins = Math.floor(audio.duration / 60);
   const secs = Math.floor(audio.duration % 60);
   duration.textContent = `${mins}:${secs < 10 ? "0" : ""}${secs}`;
 });
 
-const items = document.querySelectorAll(".result-item");
-for (let i = 0; i < items.length; i++) {
-  const item = items[i];
-  item.addEventListener("click", () => {
-    item.classList.add("click-animation");
-    setTimeout(() => {
-      item.classList.remove("click-animation");
-    }, 300);
-
-    const imgElement = document.querySelector(".imgBx img");
-    const nameElement = document.querySelector(".details .name");
-    const authorElement = document.querySelector(".details .author");
-    const audio = document.getElementById("music");
-    imgElement.src = globalData[i].img;
-    nameElement.textContent = globalData[i].name;
-    authorElement.textContent = `${globalData[i].artist} - ${globalData[i].year}`;
-    const url = globalData[i].url;
-    audio.src = globalData[i].url;
-    currplaying++;
-    if (audio.paused) {
-      audio.play();
-      icon.setAttribute("src", "images/pause.png");
-    }
-  });
-}
-
+audio.addEventListener("timeupdate", updateProgress);
 
 playPauseBtn.addEventListener("click", togglePlayPause);
-audio.addEventListener("timeupdate", updateProgress);
 seekSlider.addEventListener("input", seek);
 seekfwd.addEventListener("click", seekforward);
 seekBck.addEventListener("click", seekbackward);
