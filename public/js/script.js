@@ -11,7 +11,6 @@ const previous = document.getElementById("previous");
 let currplaying = 0;
 let globalData = null;
 
-
 const p = async () => {
   try {
     const response = await fetch("https://music-stream-a261.onrender.com/search1");
@@ -24,6 +23,54 @@ const p = async () => {
 };
 
 p();
+
+function toggleDarkMode() {
+  const body = document.querySelector('body');
+  const darkModeIcon = document.getElementById('darkModeIcon');
+  const lightModeIcon = document.getElementById('lightModeIcon');
+
+  if (body.classList.contains('dark-mode')) {
+    // If dark mode is active, switch to light mode
+    body.classList.remove('dark-mode');
+    localStorage.setItem('mode', 'light'); // Update local storage
+    darkModeIcon.style.display = 'inline-block';
+    lightModeIcon.style.display = 'none';
+  } else {
+    // If light mode is active, switch to dark mode
+    body.classList.add('dark-mode');
+    localStorage.setItem('mode', 'dark'); // Update local storage
+    lightModeIcon.style.display = 'inline-block';
+    darkModeIcon.style.display = 'none';
+  }
+}
+
+// Check if dark mode preference is stored in local storage
+document.addEventListener('DOMContentLoaded', () => {
+  const mode = localStorage.getItem('mode');
+  if (mode === 'dark') {
+    toggleDarkMode(); // Switch to dark mode if stored preference is dark
+  }
+});
+
+
+// JavaScript (script.js)
+const darkModeIcon = document.getElementById('darkModeIcon');
+const lightModeIcon = document.getElementById('lightModeIcon');
+const body = document.querySelector('body');
+
+darkModeIcon.addEventListener('click', () => {
+  darkModeIcon.style.display = 'none';
+  lightModeIcon.style.display = 'inline-block';
+  body.classList.add('dark-mode');
+  localStorage.setItem('mode', 'dark');
+});
+
+lightModeIcon.addEventListener('click', () => {
+  lightModeIcon.style.display = 'none';
+  darkModeIcon.style.display = 'inline-block';
+  body.classList.remove('dark-mode');
+  localStorage.setItem('mode', 'light');
+});
 
 
 function togglePlayPause() {
@@ -60,7 +107,7 @@ function seekbackward() {
 function nextPlay() {
   currplaying++;
   if (currplaying >= globalData.length) {
-    currplaying = 0; 
+    currplaying = 0;
   }
   const audio = document.getElementById("music");
   audio.src = globalData[currplaying].url;
@@ -80,7 +127,7 @@ function nextPlay() {
 function previousPlay() {
   currplaying--;
   if (currplaying < 0) {
-    currplaying = globalData.length - 1; 
+    currplaying = globalData.length - 1;
   }
   const audio = document.getElementById("music");
   audio.src = globalData[currplaying].url;
@@ -136,5 +183,5 @@ audio.addEventListener("timeupdate", updateProgress);
 seekSlider.addEventListener("input", seek);
 seekfwd.addEventListener("click", seekforward);
 seekBck.addEventListener("click", seekbackward);
-next.addEventListener("click",nextPlay);
-previous.addEventListener("click",previousPlay);
+next.addEventListener("click", nextPlay);
+previous.addEventListener("click", previousPlay);
