@@ -52,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-// JavaScript (script.js)
 const darkModeIcon = document.getElementById('darkModeIcon');
 const lightModeIcon = document.getElementById('lightModeIcon');
 const body = document.querySelector('body');
@@ -71,7 +69,6 @@ lightModeIcon.addEventListener('click', () => {
   body.classList.remove('dark-mode');
   localStorage.setItem('mode', 'light');
 });
-
 
 function togglePlayPause() {
   if (audio.paused) {

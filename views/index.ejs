@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,94 +9,106 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
   <link rel="icon" href="images/logo.png" type="image/x-icon" />
   <title>Music Stream</title>
 </head>
+
 <body>
   <!-- Dark mode icon -->
   <i id="darkModeIcon" class="fa-solid fa-sun top-right-icon"></i>
-  
+
   <!-- Light mode icon -->
   <i id="lightModeIcon" class="fa-solid fa-moon top-right-icon" style="display: none;"></i>
 
   <div class="ui">
     <div class="player">
-      <% if(data !== null && data !== undefined){ %>
-        
-      <div class="imgBx">
-        <img src="<%= data[0].img %>" height="250px" width="250px" />
-      </div>
+      <% if(data !==null && data !==undefined){ %>
 
-      <ul class="details">
-        <li class="name"><%= data[0].name %></li>
-        <li class="author"><%= data[0].artist %> - <%= data[0].year %> </li>
-      </ul>
-
-      <div class="controls">
-        <div class="seekbar">
-          <span id="currentTime">00:00</span>
-          <input type="range" id="seekSlider" min="0" max="100" value="0" />
-          <span id="duration">00:00</span>
+        <div class="imgBx">
+          <img src="<%= data[0].img %>" height="250px" width="250px" />
         </div>
-        <div class="btn-cntrl">
-          <button id="seekBackward">
-            <img src="images/backward.png" height="20px" width="20px" alt="previous" />
-          </button>
-          <button id="previous">
-            <img src="images/previous.png" height="20px" width="20px" alt="" />
-          </button>
-          <button id="playPauseBtn">
-            <img id="buttonicon" src="images/pause.png" height="30px" width="30px" alt="" />
-          </button>
-          <button id="next">
-            <img src="images/next.png" height="20px" width="20px" alt="next" />
-          </button>
-          <button id="seekForward">
-            <img src="images/fw.png" height="20px" width="20px" alt="" />
-          </button>
-        </div>
-      </div>
 
-      <audio id="music" autoplay loop >
-        <source src="<%= data[0].url %>" />
-      </audio>
-      <% } else { %>
-      <div class="st">
-        <p>What do you want to listen to ?</p>
-      </div>
-      <% } %>
+        <ul class="details">
+          <li class="name">
+            <%= data[0].name %>
+          </li>
+          <li class="author">
+            <%= data[0].artist %> - <%= data[0].year %>
+          </li>
+        </ul>
+
+        <div class="controls">
+          <div class="seekbar">
+            <span id="currentTime">00:00</span>
+            <input type="range" id="seekSlider" min="0" max="100" value="0" />
+            <span id="duration">00:00</span>
+          </div>
+          <div class="btn-cntrl">
+            <button id="seekBackward">
+              <img src="images/backward.png" height="20px" width="20px" alt="previous" />
+            </button>
+            <button id="previous">
+              <img src="images/previous.png" height="20px" width="20px" alt="" />
+            </button>
+            <button id="playPauseBtn">
+              <img id="buttonicon" src="images/pause.png" height="30px" width="30px" alt="" />
+            </button>
+            <button id="next">
+              <img src="images/next.png" height="20px" width="20px" alt="next" />
+            </button>
+            <button id="seekForward">
+              <img src="images/fw.png" height="20px" width="20px" alt="" />
+            </button>
+          </div>
+        </div>
+
+        <audio id="music" autoplay loop>
+          <source src="<%= data[0].url %>" />
+        </audio>
+        <% } else { %>
+          <div class="st">
+            <p>What do you want to listen to ?</p>
+          </div>
+          <% } %>
     </div>
 
     <div class="search-box">
       <div class="search">
         <form class="box">
           <input type="text" name="song" id="song" class="box1" required />
-          <input id="get" type="image" src="images/search.svg" alt="search" class="button" onclick="p()" formaction="/search" />
+          <input id="get" type="image" src="images/search.svg" alt="search" class="button" onclick="p()"
+            formaction="/search" />
         </form>
       </div>
 
-        <div class="results">
-          <% if(data !== null && data !== undefined){ %>
-            <% for (let i = 0; i < data.length; i++) { %>
-              <% const element = data[i]; %>
-              <div class="result-item" >
-                  <div class="songresult">
-                      <img src="<%= element.img %>" height="20px" width="20px" />
-                      <div class="search-details">
-                          <h4 id="elementname"><%= element.name %></h4>
-                          <p><%= element.artist %> - <%= element.year %></p>
-                      </div>
+      <div class="results">
+        <% if(data !==null && data !==undefined){ %>
+          <% for (let i=0; i < data.length; i++) { %>
+            <% const element=data[i]; %>
+              <div class="result-item">
+                <div class="songresult">
+                  <img src="<%= element.img %>" height="20px" width="20px" />
+                  <div class="search-details">
+                    <h4 id="elementname">
+                      <%= element.name %>
+                    </h4>
+                    <p>
+                      <%= element.artist %> - <%= element.year %>
+                    </p>
                   </div>
+                </div>
               </div>
-          <% } %>          
-          <% } %>
-      </div>
+              <% } %>
+                <% } %>
       </div>
     </div>
   </div>
+  </div>
   <script differ src="js/script.js"></script>
 </body>
+
 </html>
