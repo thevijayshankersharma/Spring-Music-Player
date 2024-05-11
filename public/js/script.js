@@ -32,24 +32,13 @@ function toggleDarkMode() {
   // Save the current mode to localStorage
   const isDarkMode = body.classList.contains("dark-mode");
   localStorage.setItem("darkMode", isDarkMode);
+
+  // Update icon visibility
+  const sunIcon = document.querySelector('.slider-icon.sun');
+  const moonIcon = document.querySelector('.slider-icon.moon');
+  sunIcon.style.opacity = isDarkMode ? 0 : 1;
+  moonIcon.style.opacity = isDarkMode ? 1 : 0;
 }
-
-// Function to set initial mode
-function setInitialMode() {
-  const isDarkMode = localStorage.getItem("darkMode") === "true";
-  const body = document.body;
-
-  // Set the initial mode based on localStorage
-  if (isDarkMode) {
-    body.classList.add("dark-mode");
-  } else {
-    body.classList.remove("dark-mode");
-  }
-}
-
-// Call setInitialMode when the page loads
-window.onload = setInitialMode;
-
 
 function togglePlayPause() {
   if (audio.paused) {

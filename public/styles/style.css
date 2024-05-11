@@ -13,34 +13,58 @@ body {
   background-color: #d9dbe6;
 }
 
-/*dark mode toggle animation */
-.dark-mode-toggle {
+.switch {
   position: fixed;
   top: 20px;
   right: 20px;
-  width: 50px;
-  height: 25px;
+  z-index: 1000;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
   background-color: #ccc;
-  border-radius: 25px;
+  border-radius: 34px;
   cursor: pointer;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.3s ease;
 }
 
-.toggle-ball {
-  width: 21px;
-  height: 21px;
-  background-color: #fff;
-  border-radius: 50%;
-  transform: translateX(0);
-  transition: transform 0.5s ease;
+.slider-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.dark-mode .dark-mode-toggle {
-  background-color: #555;
+.slider-icon.sun {
+  left: calc(100% - 34px);
+  opacity: 1;
 }
 
-.dark-mode .toggle-ball {
-  transform: translateX(25px);
+.slider-icon.moon {
+  left: 10px;
+  filter: invert(100%);
+}
+
+input:checked+.slider {
+  background-color: #333;
+}
+
+input:checked+.slider .sun {
+  left: calc(100% - 34px);
+  opacity: 0;
+}
+
+input:checked+.slider .moon {
+  left: 10px;
+  opacity: 1;
 }
 
 body.dark-mode {
@@ -48,15 +72,12 @@ body.dark-mode {
   color: #ffffff;
 }
 
-.dark-mode .player {
+.dark-mode .player,
+.dark-mode .search-box {
   background-color: #121212;
   color: #ffffff;
 }
 
-.dark-mode .search-box {
-  background-color: #0e0e0e;
-  color: #ffffff;
-}
 
 .player {
   width: 70vh;

@@ -18,10 +18,17 @@
 </head>
 
 <body>
-  <!-- Dark mode toggle button with animation -->
-  <div class="dark-mode-toggle" onclick="toggleDarkMode()">
-    <div class="toggle-ball"></div>
-  </div>
+  <!-- Dark mode toggle switch with custom sun and moon icons -->
+  <label class="switch" for="dark-mode-toggle">
+    <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+    <span class="slider round">
+      <img class="slider-icon sun" src="https://cdn.hugeicons.com/icons/sun-03-stroke-rounded.svg" alt="sun" width="24"
+        height="24">
+      <img class="slider-icon moon" src="https://cdn.hugeicons.com/icons/moon-02-stroke-rounded.svg" alt="moon"
+        width="24" height="24">
+    </span>
+  </label>
+
 
 
   <div class="ui">
