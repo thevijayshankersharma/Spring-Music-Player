@@ -43,13 +43,13 @@ body {
 .sun-icon-container i,
 .moon i {
   font-size: 35px;
-  color: #000000;
+  color: #333;
   transition: color 0.5s ease;
 }
 
 .dark-mode .sun-icon-container i,
 .dark-mode .moon i {
-  color: #fcfcfc;
+  color: #888;
 }
 
 .light-mode-indicator {
@@ -57,8 +57,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   background-color: #FFFFFF;
   z-index: -1;
   transition: transform 0.5s ease, left 0.5s ease, background-color 0.5s ease, border-radius 0.5s ease;
@@ -68,7 +68,7 @@ body {
 }
 
 .dark-mode .light-mode-indicator {
-  left: calc(100% + 50px);
+  left: calc(100% + 40px);
   background-color: #010101;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -78,10 +78,8 @@ body {
 
 .moon {
   position: absolute;
-  bottom: 7px;
-  right: 5px;
-  width: 50px;
-  height: 50px;
+  bottom: 28px;
+  right: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,14 +87,14 @@ body {
 
 .moon i,
 .sun i {
-  font-size: 35px;
-  color: #000000;
+  font-size: 22px;
+  color: #333;
   transition: color 0.5s ease;
 }
 
 .dark-mode .moon i,
 .dark-mode .sun i {
-  color: #fcfcfc;
+  color: #888;
 }
 
 body.dark-mode {
