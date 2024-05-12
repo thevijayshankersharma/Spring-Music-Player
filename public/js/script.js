@@ -24,21 +24,28 @@ const p = async () => {
 
 p();
 
-// Function to toggle dark mode
-function toggleDarkMode() {
-  const body = document.body;
-  body.classList.toggle("dark-mode");
+document.addEventListener("DOMContentLoaded", function () {
+  function activateDarkMode() {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('mode', 'dark');
+  }
 
-  // Save the current mode to localStorage
-  const isDarkMode = body.classList.contains("dark-mode");
-  localStorage.setItem("darkMode", isDarkMode);
+  function activateLightMode() {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('mode', 'light');
+  }
 
-  // Update icon visibility
-  const sunIcon = document.querySelector('.slider-icon.sun');
-  const moonIcon = document.querySelector('.slider-icon.moon');
-  sunIcon.style.opacity = isDarkMode ? 0 : 1;
-  moonIcon.style.opacity = isDarkMode ? 1 : 0;
-}
+  const storedMode = localStorage.getItem('mode');
+
+  if (storedMode === 'dark') {
+    activateDarkMode();
+  }
+
+  const sunIconContainer = document.querySelector(".sun-icon-container");
+  const moonIconContainer = document.querySelector(".moon");
+  sunIconContainer.addEventListener("click", activateLightMode);
+  moonIconContainer.addEventListener("click", activateDarkMode);
+});
 
 function togglePlayPause() {
   if (audio.paused) {

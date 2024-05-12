@@ -13,58 +13,90 @@ body {
   background-color: #d9dbe6;
 }
 
-.switch {
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.dark-mode {
+  background-color: #171614;
+}
+
+.toggle-container {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 1000;
+  width: 115px;
+  height: 50px;
+  cursor: pointer;
 }
 
-.switch input {
-  display: none;
-}
-
-.slider {
+.sun-icon-container {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
-  background-color: #ccc;
-  border-radius: 34px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.slider-icon {
+.sun-icon-container i,
+.moon i {
+  font-size: 35px;
+  color: #000000;
+  transition: color 0.5s ease;
+}
+
+.dark-mode .sun-icon-container i,
+.dark-mode .moon i {
+  color: #fcfcfc;
+}
+
+.light-mode-indicator {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  background-color: #FFFFFF;
+  z-index: -1;
+  transition: transform 0.5s ease, left 0.5s ease, background-color 0.5s ease, border-radius 0.5s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
-.slider-icon.sun {
-  left: calc(100% - 34px);
-  opacity: 1;
+.dark-mode .light-mode-indicator {
+  left: calc(100% + 50px);
+  background-color: #010101;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-.slider-icon.moon {
-  left: 10px;
-  filter: invert(100%);
+.moon {
+  position: absolute;
+  bottom: 7px;
+  right: 5px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-input:checked+.slider {
-  background-color: #333;
+.moon i,
+.sun i {
+  font-size: 35px;
+  color: #000000;
+  transition: color 0.5s ease;
 }
 
-input:checked+.slider .sun {
-  left: calc(100% - 34px);
-  opacity: 0;
-}
-
-input:checked+.slider .moon {
-  left: 10px;
-  opacity: 1;
+.dark-mode .moon i,
+.dark-mode .sun i {
+  color: #fcfcfc;
 }
 
 body.dark-mode {
@@ -78,6 +110,16 @@ body.dark-mode {
   color: #ffffff;
 }
 
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dark-mode .player,
+.dark-mode .search-box {
+  background-color: #121212;
+  color: #ffffff;
+}
 
 .player {
   width: 70vh;

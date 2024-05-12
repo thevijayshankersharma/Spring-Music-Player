@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
   <link rel="icon" href="images/logo.png" type="image/x-icon" />
@@ -19,17 +20,14 @@
 
 <body>
   <!-- Dark mode toggle switch with custom sun and moon icons -->
-  <label class="switch" for="dark-mode-toggle">
-    <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
-    <span class="slider round">
-      <img class="slider-icon sun" src="https://cdn.hugeicons.com/icons/sun-03-stroke-rounded.svg" alt="sun" width="24"
-        height="24">
-      <img class="slider-icon moon" src="https://cdn.hugeicons.com/icons/moon-02-stroke-rounded.svg" alt="moon"
-        width="24" height="24">
-    </span>
-  </label>
-
-
+  <div class="toggle-container">
+    <div class="sun-icon-container" onclick="activateLightMode()">
+      <div class="sun"><i class="material-symbols-outlined">light_mode</i></div>
+      <div class="light-mode-indicator"></div>
+    </div>
+    <div class="space"></div>
+    <div class="moon" onclick="activateDarkMode()"><i class="material-symbols-outlined">dark_mode</i></div>
+  </div>
 
   <div class="ui">
     <div class="player">
